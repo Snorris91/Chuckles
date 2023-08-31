@@ -44,32 +44,27 @@ export const changeJokeValue = async (jokeObject) => {
     },
     body: JSON.stringify(jokeData),
   };
-
   const response = await fetch(
     `http://localhost:8088/jokes/${jokeObject.id}`,
     jokeOptions
   );
-  // const joke = await response.json()
-  // jokeObject = joke.told
+  if (response.ok) {
+    console.log("Joke Updated")
+  }
 };
-//try{
-//   if (response.ok) {
-//     console.log('Joke updated successfully');
-//     // You can reset the userInput state here if needed
 
-//   } else {
-//     console.error('Failed to update joke');
-//   }
-// } catch (error) {
-//   console.error('Error updating joke:', error);
-// }
-
-// const element = document.querySelector('#put-request .date-updated');
-// const requestOptions = {
-//     method: 'PUT',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({ title: 'Fetch PUT Request Example' })
-// };
-// fetch('https://reqres.in/api/articles/1', requestOptions)
-//     .then(response => response.json())
-//     .then(data => element.innerHTML = data.updatedAt );
+export const deleteJoke = async (joke) => {
+  const jokeOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `http://localhost:8088/jokes/${joke.id}`,
+    jokeOptions
+  );
+  if (response.ok) {
+    console.log("Joke Deleted")
+  }
+};
